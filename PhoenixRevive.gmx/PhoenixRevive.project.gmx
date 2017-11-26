@@ -38,15 +38,26 @@
     </sprites>
     <sprite>sprites\spr_settings_resButtons</sprite>
     <sprite>sprites\spr_mouse_tracker</sprite>
+    <sprite>sprites\spr_projectile</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_mainGame</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
-    <object>objects\obj_playerShip</object>
-    <object>objects\obj_windowManager</object>
-    <object>objects\obj_settings_resButton</object>
-    <object>objects\obj_settingsManager</object>
-    <object>objects\obj_mouse_tracker</object>
+    <objects name="main_game">
+      <object>objects\obj_gameManger</object>
+      <object>objects\obj_player_projectile</object>
+      <object>objects\obj_playerShip</object>
+    </objects>
+    <objects name="settings">
+      <object>objects\obj_settings_resButton</object>
+      <object>objects\obj_settingsManager</object>
+    </objects>
+    <objects name="misc">
+      <object>objects\obj_mouse_tracker</object>
+      <object>objects\obj_windowManager</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_testing</room>

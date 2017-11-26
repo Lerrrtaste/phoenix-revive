@@ -98,11 +98,13 @@ switch(mode) {
             <string>if(mouse_check_button_pressed(mb_left) &amp;&amp; mode) {
     if(obj_windowManager.resolution != obj_windowManager.max_resolution) {
     obj_windowManager.resolution++;
+    global.sprite_resize = obj_windowManager.resolution +1;
     }
 }
 if(mouse_check_button_pressed(mb_left) &amp;&amp; !mode) {
     if(obj_windowManager.resolution != 0) {
     obj_windowManager.resolution--;
+    global.sprite_resize = obj_windowManager.resolution +1;
     }
 }
 </string>
