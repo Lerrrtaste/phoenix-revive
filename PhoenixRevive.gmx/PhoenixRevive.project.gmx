@@ -39,16 +39,37 @@
     <sprite>sprites\spr_settings_resButtons</sprite>
     <sprite>sprites\spr_mouse_tracker</sprite>
     <sprite>sprites\spr_projectile</sprite>
+    <sprite>sprites\spr_playerShield</sprite>
+    <sprite>sprites\spr_enemy</sprite>
+    <sprite>sprites\spr_playerShip_pieces</sprite>
+    <sprite>sprites\spr_enemy_fighter</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\bg_mainGame</background>
+    <background>background\bg_mainGame1</background>
+    <background>background\bg_mainGame2</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\path_fighter1</path>
+    <path>paths\path_fighter2</path>
+    <path>paths\path_fighter3</path>
+  </paths>
+  <scripts name="scripts">
+    <script>scripts\scr_spawn_fighter.gml</script>
+    <script>scripts\scr_player_colliding.gml</script>
+    <script>scripts\scr_fighter_colliding.gml</script>
+  </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_hud</font>
+  </fonts>
   <objects name="objects">
     <objects name="main_game">
       <object>objects\obj_gameManger</object>
       <object>objects\obj_player_projectile</object>
+      <object>objects\obj_enemy_fighter_projectile</object>
       <object>objects\obj_playerShip</object>
+      <object>objects\obj_enemy_fighter</object>
+      <object>objects\obj_player_pieces</object>
+      <object>objects\obj_enemy_explosion</object>
     </objects>
     <objects name="settings">
       <object>objects\obj_settings_resButton</object>
@@ -60,7 +81,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_testing</room>
+    <room>rooms\rm_level_1</room>
+    <room>rooms\rm_level_2</room>
     <room>rooms\rm_settings</room>
   </rooms>
   <help>

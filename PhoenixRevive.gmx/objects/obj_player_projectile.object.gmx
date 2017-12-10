@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>vspeed = room_speed*8 ; //speed
+            <string>vspeed = room_speed*2 ; //speed
 direction = 90; // move up
 </string>
           </argument>

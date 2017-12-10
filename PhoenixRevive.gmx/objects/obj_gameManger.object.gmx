@@ -27,6 +27,220 @@
             <kind>1</kind>
             <string>/// init globals
 global.sprite_resize = 1;
+global.formationX = room_width/2;
+global.formationY = (room_height/8);
+
+formation_dir = 0; //0 = right | 1 = left
+step_buffer = 20; //move every x steps
+step_buffer_counter = 0; //temp
+formation_move_distance = 10; //move distance
+
+enemys_spawned = 0; //t/f
+
+global.playerLives = 5;
+global.points = 1;
+global.hiscore = 2831;
+
+hiscore_draw_temp = "";
+points_draw_temp = "";
+
+//calc hiscore draw text
+hiscore_padding = "";
+for(i = 0; i &lt; 5 - string_length(string(global.hiscore)); i++)
+{
+    hiscore_padding += string(0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//enemy spawning (room based)
+if (enemys_spawned == 0) {
+    enemys_spawned = 1;
+    switch(room) {
+        default: //dbg room
+            //spawn fighter         
+            scr_spawn_fighter(-45,0);
+            scr_spawn_fighter(45,0);
+            scr_spawn_fighter(0,30);
+            scr_spawn_fighter(-90,75);
+            scr_spawn_fighter(0,75);
+            scr_spawn_fighter(90,75);
+            scr_spawn_fighter(-135,105);
+            scr_spawn_fighter(-45,105);
+            scr_spawn_fighter(45,105);
+            scr_spawn_fighter(135,105);
+            scr_spawn_fighter(-180,135);
+            scr_spawn_fighter(0,135);
+            scr_spawn_fighter(180,135);
+            scr_spawn_fighter(0,195);
+            
+            break;
+    }
+}
+
+if (global.formationX &gt; (room_width/3)*2 - 180) { //right max
+    formation_dir = 1;
+} else if (global.formationX &lt; room_width/3 + 200) { //left max
+    formation_dir = 0;
+}
+
+if (step_buffer_counter == step_buffer) {
+    step_buffer_counter = 0;
+    if (formation_dir == 0) { global.formationX += formation_move_distance; } else { global.formationX -= formation_move_distance; }
+}
+
+step_buffer_counter++;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>hud_center_x = room_width/2;
+hud_center_y = room_height/20;
+
+//presets
+draw_set_font(fnt_hud);
+draw_set_halign(fa_center);
+draw_set_valign(fa_center);
+
+//calc point draw padding
+points_padding = "";
+for(i = 0; i &lt; 5 - string_length(string(global.points)); i++)
+{
+    points_padding += string(0);
+}
+/*
+points_draw_temp = ""; 
+for(i=0;i&lt;6;i++) {
+    numb =  string_char_at(string(global.points),1);
+    if(string_length(string(global.points)) &lt; i) { numb_to_add = numb; } else { numb_to_add = "0"; }
+    points_draw_temp =  string_insert(numb_to_add,
+                        points_draw_temp,
+                        6-i); //string_length(points_draw_temp)+1);
+}
+*/
+
+
+//draw calls
+/*
+XX00XX  XX01XX  XX02XX
+XX03XX  XX04XX  XX05XX
+XX06XX  XX07XX  XX08XX
+*/
+
+//XX00XX
+draw_text_colour(   hud_center_x - (room_width/8),
+                    hud_center_y - (room_height/40),
+                    "SCORE 1",
+                    c_white,c_white,c_white,c_white,1);
+                    
+//XX01XX
+draw_text_colour(   hud_center_x,
+                    hud_center_y - (room_height/40),
+                    "HI-SCORE",
+                    c_white,c_white,c_white,c_white,1);
+                    
+//XX02XX
+draw_text_colour(   hud_center_x + (room_width/8),
+                    hud_center_y - (room_height/40),
+                    "SCORE 2",
+                    c_white,c_white,c_white,c_white,1);
+                    
+//XX03XX
+draw_text_colour(   hud_center_x - (room_width/8),
+                    hud_center_y,
+                    points_padding + string(global.points),
+                    c_white,c_white,c_white,c_white,1);
+                    
+//XX04XX
+draw_text_colour(   hud_center_x,
+                    hud_center_y,
+                    hiscore_padding + string(global.hiscore),
+                    c_white,c_white,c_white,c_white,1);
+
+//XX05XX
+draw_text_colour(   hud_center_x + (room_width/8),
+                    hud_center_y,
+                    "000000",
+                    c_white,c_white,c_white,c_white,1);
+                    
+//XX06XX
+draw_text_colour(   hud_center_x - (room_width/8),
+                    hud_center_y + (room_height/40),
+                    "Lives: " + string(global.playerLives),
+                    c_white,c_white,c_white,c_white,1);
+                    
+//XX07XX
+draw_text_colour(   hud_center_x,
+                    hud_center_y + (room_height/40),
+                    "COIN 01",
+                    c_white,c_white,c_white,c_white,1);
+                    
+//XX08XX
+draw_text_colour(   hud_center_x + (room_width/8),
+                    hud_center_y + (room_height/40),
+                    "Lives: 0",
+                    c_white,c_white,c_white,c_white,1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.points++;
 </string>
           </argument>
         </arguments>
