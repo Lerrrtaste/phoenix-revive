@@ -3,10 +3,10 @@
   <type>0</type>
   <xorig>15</xorig>
   <yorigin>8</yorigin>
-  <colkind>0</colkind>
+  <colkind>1</colkind>
   <coltolerance>0</coltolerance>
-  <sepmasks>-1</sepmasks>
-  <bboxmode>0</bboxmode>
+  <sepmasks>0</sepmasks>
+  <bboxmode>1</bboxmode>
   <bbox_left>0</bbox_left>
   <bbox_right>29</bbox_right>
   <bbox_top>0</bbox_top>
@@ -21,5 +21,6 @@
   <height>16</height>
   <frames>
     <frame index="0">images\spr_enemy_fighter_0.png</frame>
+    <frame index="1">images\spr_enemy_fighter_1.png</frame>
   </frames>
 </sprite>

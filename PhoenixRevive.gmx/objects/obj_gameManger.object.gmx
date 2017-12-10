@@ -25,13 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// init globals
+            <string>/// init locals/globals 
 global.sprite_resize = 1;
 global.formationX = room_width/2;
 global.formationY = (room_height/8);
 
 formation_dir = 0; //0 = right | 1 = left
-step_buffer = 20; //move every x steps
+step_buffer = 10; //move every x steps
 step_buffer_counter = 0; //temp
 formation_move_distance = 10; //move distance
 
@@ -110,6 +110,30 @@ if (step_buffer_counter == step_buffer) {
 
 step_buffer_counter++;
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///switch level (rooms)
+if (enemys_spawned == 0) {
+    room_next(room);
+}
 </string>
           </argument>
         </arguments>
