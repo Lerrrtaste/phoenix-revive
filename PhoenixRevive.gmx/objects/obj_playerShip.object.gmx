@@ -26,10 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>dirspeed = 0; // negative: moving left positive: moving right
-max_speed = room_speed/6; //pixel per frame
+max_speed = room_speed/16; //pixel per frame
 acceleration = 4;
 slowdown = 2;
 subimg = 0;
+img_buffer = 0;
 
 fire_cooldown = room_speed/2; //min steps between fire
 f_cooldown = 0; //temp val for messurement
@@ -258,11 +259,13 @@ hspeed = dirspeed;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if (img_buffer == 1) { //depends on room speed
+    img_buffer = 0;
     if speed == 0 &amp;&amp; shield == 0 {subimg = 0;}
-    else if subimg == 3 &amp;&amp; shield == 0 { subimg = 0; }
+    else if subimg &gt;= 3 &amp;&amp; shield == 0 { subimg = 0; }
     else if subimg == image_number &amp;&amp; shield == 1 {subimg = 4; }
     else {subimg++; }
+} else { img_buffer++; }
 
 if (toDrawSelf == 1) {
     draw_sprite_stretched(  spr_playerShip,subimg,x,y,

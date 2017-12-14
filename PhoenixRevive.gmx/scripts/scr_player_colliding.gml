@@ -6,6 +6,9 @@ instance_create(x,y,obj_player_pieces);
 instance_create(x,y,obj_player_pieces);
 instance_create(x,y,obj_player_pieces);
 instance_create(x,y,obj_player_pieces);
-instance_create(x,y,obj_player_pieces); 
-instance_destroy(colliding_inst);
+instance_create(x,y,obj_player_pieces);
+with(colliding_inst) {
+instance_destroy();
+}
+
 alarm[0] = room_speed * 3;
